@@ -89,6 +89,7 @@ export function MoviesIndex(){
     const onFinish = () => {
         setOpen(false)
         saveToLocalStorage([]);
+        dispatch(ClearCar());
         setForm(<h3>Compra exitosa!</h3>)
         setOpen(true)
     }
