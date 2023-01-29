@@ -12,10 +12,9 @@ import Table from "./table.component";
 import { useDispatch } from "react-redux";
 import { AddCar, ClearCar } from "../redux/car.actions"
 
+const movies: Movies = await getMovies();
 
-export async function MoviesIndex(){
-    
-    const movies: Movies = await getMovies();
+export function MoviesIndex(){
 
     const [item, setItem] = useState<Search>();
     const [items, setItems] = useState<Search[]>([]);
