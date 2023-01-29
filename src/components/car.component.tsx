@@ -1,10 +1,13 @@
 import { CellMovie, RowMovie, TableMovies } from "../styles/table";
-import { getFromLocalStorage } from "../commons/localStorage";
-import { MovieRent, MovieSale } from "../interfaces/movie.interface";
+
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/car.combine";
 
 export function CarList() {
 
-    const itemsLocal = getFromLocalStorage<MovieRent | MovieSale>() ?? [];
+    const itemsStore = useSelector((state: RootState) => state.car.data);
+
+    // const itemsLocal = getFromLocalStorage<MovieRent | MovieSale>() ?? [];
 
     return (
         <div>
@@ -15,7 +18,7 @@ export function CarList() {
                     <CellMovie font="bold">Tipo</CellMovie>
                     <CellMovie font="bold">Cantidad</CellMovie>
                 </RowMovie>
-                {itemsLocal.map((row, i) => (
+                {itemsStore.map((row, i) => (
                     <RowMovie key={i}>
                         <CellMovie>{row.Title}</CellMovie>
                         <CellMovie>{row.Year}</CellMovie>

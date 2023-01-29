@@ -10,7 +10,7 @@ interface Props {
 
 const FormRent: React.FC<Props> = ({ item, onSubmit, onFinish }) => {
   const [date, setDate] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,6 +27,7 @@ const FormRent: React.FC<Props> = ({ item, onSubmit, onFinish }) => {
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
+          required
         />
       </label>
       <br />
@@ -36,6 +37,8 @@ const FormRent: React.FC<Props> = ({ item, onSubmit, onFinish }) => {
           type="number"
           value={quantity}
           onChange={(e) => setQuantity(+e.target.value)}
+          required
+          min={1}
         />
       </label>
       <br />

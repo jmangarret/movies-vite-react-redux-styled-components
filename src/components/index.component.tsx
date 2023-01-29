@@ -9,6 +9,9 @@ import FormRent from "./rent.component";
 import FormSale from "./sale.component";
 import Table from "./table.component";
 
+import { useDispatch } from "react-redux";
+import { AddCar, ClearCar } from "../redux/car.actions"
+
 const movies: Movies = await getMovies();
 
 export function MoviesIndex(){
@@ -18,6 +21,8 @@ export function MoviesIndex(){
     const [open, setOpen] = useState<boolean>(false);
     const [typeRequest, setTypeRequest] = useState<string>("");
     const [form, setForm] = useState<React.ReactNode>(<></>);
+
+    const dispatch = useDispatch();
 
     const addCart = (movie: Search) => {
         if (!typeRequest){
@@ -32,6 +37,7 @@ export function MoviesIndex(){
 
     const handleTypeRequest = (e: React.ChangeEvent<HTMLSelectElement>) => {
         saveToLocalStorage([]);
+        dispatch(ClearCar());
         setTypeRequest(e.target.value)
     }
 
@@ -61,6 +67,8 @@ export function MoviesIndex(){
         }else{
             saveToLocalStorage([movie]);
         }
+
+        dispatch(AddCar(movie));
     }
 
     const saleSubmit = (movie: MovieSale) => {
@@ -74,6 +82,8 @@ export function MoviesIndex(){
         }else{
             saveToLocalStorage([movie]);
         }
+
+        dispatch(AddCar(movie));
     }
 
     const onFinish = () => {
